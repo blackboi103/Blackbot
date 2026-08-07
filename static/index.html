@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenClaw WebUI</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+      <header class="app-header">
+          <h1>OpenClaw WebUI</h1>
+          <p>Local connection through the Python backend</p>
+      </header>
+
+       <section class="chat-panel" aria-label="Chat">
+          <div id="messages" class="messages" aria-live="polite">
+              <article class="message">
+                  <span class="message-label">OpenClaw</span>
+                  <p>WebUI ready. Gateway connection is not configured yet.</p>
+              </article>
+          </div>
+
+          <form id="chat-form" class="composer">
+              <label class="sr-only" for="message-input">Message</label>
+              <textarea
+                  id="message-input"
+                  name="message"
+                  rows="3"
+                  placeholder="Message OpenClaw..."
+              ></textarea>
+              <button type="submit">Send</button>
+          </form>
+      </section>
+  </main>
+</body>
+</html>
