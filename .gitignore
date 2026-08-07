@@ -1,5 +1,23 @@
+<<<<<<< HEAD
 .venv/
 .env
 _pycache_/
 *.pyc
 data/
+=======
+ # Python virtual environment
+.venv/
+
+  # Local secrets and environment variables
+.env
+
+  # Python-generated files
+  __pycache__/
+*.py[cod]
+
+  # Test-generated files
+.pytest_cache/
+
+  # Local editor settings
+.vscode/
+>>>>>>> d2dceef (Create Initial FastAPI backend)
