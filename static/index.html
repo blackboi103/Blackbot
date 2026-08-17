@@ -3,36 +3,112 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OpenClaw WebUI</title>
+  <meta name="description" content="Local OpenClaw Mission Control workspace">
+  <title>OpenClaw Mission Control</title>
   <link rel="stylesheet" href="/static/styles.css">
   <script src="/static/app.js" defer></script>
 </head>
 <body>
-  <main class="app-shell">
-      <header class="app-header">
-          <h1>OpenClaw WebUI</h1>
-          <p>Local connection through the Python backend</p>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">OC</div>
+        <div><strong>OpenClaw</strong><span>Mission Control</span></div>
+      </div>
+
+      <nav class="primary-nav" aria-label="Workspace navigation">
+        <button class="nav-item" type="button" data-view="overview"><span class="nav-icon">⌂</span> Overview</button>
+        <button class="nav-item active" type="button" data-view="tasks"><span class="nav-icon">▦</span> Tasks <span class="nav-count" id="task-count">0</span></button>
+        <button class="nav-item" type="button" data-view="projects"><span class="nav-icon">◇</span> Projects</button>
+        <button class="nav-item" type="button" data-view="calendar"><span class="nav-icon">□</span> Calendar</button>
+        <button class="nav-item" type="button" data-view="memory"><span class="nav-icon">◎</span> Memory</button>
+        <button class="nav-item" type="button" data-view="documents"><span class="nav-icon">≡</span> Documents</button>
+        <button class="nav-item" type="button" data-view="team"><span class="nav-icon">♙</span> Team</button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="gateway-status">
+          <span class="status-dot"></span>
+          <div><strong>Local workspace</strong><span>Gateway adapter pending</span></div>
+        </div>
+        <p>OpenClaw learning environment</p>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar">
+        <div><p class="eyebrow">Operations workspace</p><h1>Task Board</h1></div>
+        <div class="topbar-actions">
+          <label class="search-box"><span>⌕</span><input id="task-search" type="search" placeholder="Search tasks" autocomplete="off"></label>
+          <button class="secondary-button" id="filter-button" type="button">Filter</button>
+          <button class="primary-button" id="new-task-button" type="button">+ New task</button>
+        </div>
       </header>
 
-       <section class="chat-panel" aria-label="Chat">
-          <div id="messages" class="messages" aria-live="polite">
-              <article class="message">
-                  <span class="message-label">OpenClaw</span>
-                  <p>WebUI ready. Gateway connection is not configured yet.</p>
-              </article>
-          </div>
-
-          <form id="chat-form" class="composer">
-              <label class="sr-only" for="message-input">Message</label>
-              <textarea
-                  id="message-input"
-                  name="message"
-                  rows="3"
-                  placeholder="Message OpenClaw..."
-              ></textarea>
-              <button type="submit">Send</button>
-          </form>
+      <section class="view-banner" aria-label="Prototype notice">
+        <div><strong>Mission Control prototype</strong><span>Temporary browser data only. Gateway and persistent task storage remain separate.</span></div>
+        <span class="prototype-badge">Learning build</span>
       </section>
-  </main>
+
+      <section class="metrics" aria-label="Workspace summary">
+        <article class="metric-card"><span>Open tasks</span><strong id="open-task-count">0</strong><small>Across the active board</small></article>
+        <article class="metric-card"><span>In progress</span><strong id="active-task-count">0</strong><small>Keep work in progress bounded</small></article>
+        <article class="metric-card"><span>Awaiting review</span><strong id="review-task-count">0</strong><small>Human verification required</small></article>
+        <article class="metric-card accent-card"><span>Workspace principle</span><strong>Visible work</strong><small>Every agent action should map to a task</small></article>
+      </section>
+
+      <div class="content-grid">
+        <section class="board-section" aria-label="Kanban task board">
+          <div class="board-header">
+            <div><h2>Active workflow</h2><p>Drag tasks between stages as work progresses.</p></div>
+            <div class="board-filters" id="board-filters" hidden>
+              <button class="filter-chip active" type="button" data-priority="all">All</button>
+              <button class="filter-chip" type="button" data-priority="high">High</button>
+              <button class="filter-chip" type="button" data-priority="medium">Medium</button>
+              <button class="filter-chip" type="button" data-priority="low">Low</button>
+            </div>
+          </div>
+          <div class="kanban-board" id="kanban-board"></div>
+        </section>
+
+        <aside class="activity-panel" aria-label="Agent activity">
+          <div class="panel-heading">
+            <div><p class="eyebrow">Live context</p><h2>Activity</h2></div>
+            <span class="live-indicator"><span></span> Local</span>
+          </div>
+          <section class="agent-card">
+            <div class="agent-avatar">BB</div>
+            <div class="agent-copy"><strong>Blackbotv0.1</strong><span>Primary OpenClaw learning agent</span></div>
+            <span class="agent-state">Idle</span>
+          </section>
+          <div class="activity-list" id="activity-list"></div>
+          <section class="boundary-card">
+            <span>Architecture boundary</span>
+            <strong>OpenClaw teaches. BlackBot inherits lessons.</strong>
+            <p>BlackBot private data never flows back into this workspace.</p>
+          </section>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <dialog class="task-dialog" id="task-dialog">
+    <form method="dialog" id="task-form">
+      <div class="dialog-heading">
+        <div><p class="eyebrow">Workspace task</p><h2>Create a task</h2></div>
+        <button class="icon-button" value="cancel" aria-label="Close dialog">×</button>
+      </div>
+      <label>Task title<input id="task-title" name="title" maxlength="100" required></label>
+      <label>Description<textarea id="task-description" name="description" rows="4" maxlength="400"></textarea></label>
+      <div class="form-row">
+        <label>Priority<select id="task-priority" name="priority"><option value="medium">Medium</option><option value="high">High</option><option value="low">Low</option></select></label>
+        <label>Owner<select id="task-owner" name="owner"><option value="Kyle">Kyle</option><option value="Blackbotv0.1">Blackbotv0.1</option><option value="Unassigned">Unassigned</option></select></label>
+      </div>
+      <div class="dialog-actions">
+        <button class="secondary-button" value="cancel" type="button" id="cancel-task-button">Cancel</button>
+        <button class="primary-button" value="default" type="submit">Create task</button>
+      </div>
+    </form>
+  </dialog>
 </body>
 </html>
