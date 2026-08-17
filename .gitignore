@@ -1,15 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-.venv/
-.env
-_pycache_/
-*.pyc
-data/
-=======
- # Python virtual environment
-=======
 # Python virtual environment
->>>>>>> c7fa392 (Add initial browser chat interface)
 .venv/
 
 # Local secrets and environment variables
@@ -22,11 +11,8 @@ __pycache__/
 # Test-generated files
 .pytest_cache/
 
-<<<<<<< HEAD
-  # Local editor settings
-.vscode/
->>>>>>> d2dceef (Create Initial FastAPI backend)
-=======
 # Local editor settings
 .vscode/
->>>>>>> c7fa392 (Add initial browser chat interface)
+
+# Local application data
+data/
