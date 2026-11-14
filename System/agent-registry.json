@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "updated": "2026-11-12",
+  "purpose": "Curated bounded knowledge routing; NOT an authorization engine or running agent roster.",
+  "coordinator": "blackbot",
+  "agents": {
+    "blackbot": {
+      "name": "BlackBot",
+      "role": "Coordinator, primary assistant and specialist result aggregator; not trading-only.",
+      "home": "Agents/BlackBot",
+      "status": "Architecture and knowledge registry only; no orchestrator process installed by this task.",
+      "context": [
+        "Agents/BlackBot/START.md",
+        "Agents/BlackBot/CURRENT_STATE.md",
+        "Agents/BlackBot/DECISIONS.md",
+        "Agents/BlackBot/SOUL.md",
+        "Agents/BlackBot/README.md"
+      ]
+    },
+    "first-agent": {
+      "name": "First Agent",
+      "role": "Developer/assistant collaborator; Hermes profile robo. Coordinates with BlackBot without becoming its parent. Formally serves the 'Developer' specialist role from the 2026-11-13 multi-agent design brief (merged here, not a separate folder, since this agent already is that role).",
+      "home": "Agents/First Agent",
+      "status": "Existing assistant profile; vault folder documents it and does not relocate its runtime. SOUL.md and README.md fully written 2026-11-13 (Developer role, user-confirmed merge).",
+      "context": [
+        "Agents/First Agent/START.md",
+        "Agents/First Agent/INITIAL_SETUP.md",
+        "Agents/First Agent/README.md",
+        "Agents/First Agent/SOUL.md"
+      ]
+    },
+    "tradingai": {
+      "name": "TradingAI",
+      "role": "BlackBot trading research, guarded paper-trading and journal specialist.",
+      "home": "Agents/TradingAI",
+      "status": "Preserved strategy/research and rollout plans; live market/paper pipeline not activated.",
+      "context": [
+        "Agents/TradingAI/START.md",
+        "Agents/TradingAI/CURRENT_STATE.md",
+        "Agents/TradingAI/DECISIONS.md",
+        "Agents/TradingAI/SOUL.md",
+        "Agents/TradingAI/README.md"
+      ]
+    },
+    "budgetai": {
+      "name": "BudgetAI",
+      "role": "BlackBot private finance specialist; deterministic calculations, review approvals and bank boundaries.",
+      "home": "Agents/BudgetAI",
+      "status": "Existing repository remains external while running; no financial operations authorized by this migration.",
+      "context": [
+        "Agents/BudgetAI/START.md",
+        "Agents/BudgetAI/CURRENT_STATE.md",
+        "Agents/BudgetAI/SOUL.md",
+        "Agents/BudgetAI/README.md"
+      ]
+    },
+    "research": {
+      "name": "Research",
+      "role": "Cited source verification and reusable research; no automatic access to private finances.",
+      "home": "Agents/Research",
+      "status": "Specialist persona fully documented (SOUL.md + README.md, 2026-11-13); no dedicated Hermes profile/runtime process yet.",
+      "context": [
+        "Agents/Research/START.md",
+        "Agents/Research/SOUL.md",
+        "Agents/Research/README.md"
+      ]
+    },
+    "project-goals": {
+      "name": "Project and Goals",
+      "role": "Projects, milestones, priorities, dependencies and next actions.",
+      "home": "Agents/Project and Goals",
+      "status": "Specialist persona fully documented (SOUL.md + README.md, 2026-11-13); no dedicated Hermes profile/runtime process yet.",
+      "context": [
+        "Agents/Project and Goals/START.md",
+        "Agents/Project and Goals/SOUL.md",
+        "Agents/Project and Goals/README.md"
+      ]
+    },
+    "school-career": {
+      "name": "School and Career",
+      "role": "Assignments, study, calendars and career planning.",
+      "home": "Agents/School and Career",
+      "status": "Specialist persona fully documented (SOUL.md + README.md, 2026-11-13); no dedicated Hermes profile/runtime process yet.",
+      "context": [
+        "Agents/School and Career/START.md",
+        "Agents/School and Career/SOUL.md",
+        "Agents/School and Career/README.md"
+      ]
+    },
+    "car-build": {
+      "name": "Car and Build",
+      "role": "Vehicle evidence, repairs, parts and build planning.",
+      "home": "Agents/Car and Build",
+      "status": "Specialist persona fully documented (SOUL.md + README.md, 2026-11-13); no dedicated Hermes profile/runtime process yet.",
+      "context": [
+        "Agents/Car and Build/START.md",
+        "Agents/Car and Build/SOUL.md",
+        "Agents/Car and Build/README.md"
+      ]
+    },
+    "content": {
+      "name": "Content",
+      "role": "Content ideas, scripts, scheduling and analytics.",
+      "home": "Agents/Content",
+      "status": "Specialist persona fully documented (SOUL.md + README.md, 2026-11-13); no dedicated Hermes profile/runtime process yet.",
+      "context": [
+        "Agents/Content/START.md",
+        "Agents/Content/SOUL.md",
+        "Agents/Content/README.md"
+      ]
+    }
+  },
+  "shared_standards": "System/SHARED AGENT STANDARDS.md",
+  "excluded_from_default_retrieval": [
+    "**/Files/**",
+    "ChatGPT Archive/**",
+    "**/node_modules/**",
+    "**/.venv/**",
+    "**/.git/**",
+    "**/evidence/**",
+    "**/Private/**",
+    "**/.env*"
+  ],
+  "private_access": "Finance and raw evidence require explicit task-scoped source selection; no cloud upload or broad sharing authorized."
+}
